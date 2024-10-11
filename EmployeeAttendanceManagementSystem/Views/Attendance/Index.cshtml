@@ -1,0 +1,46 @@
+﻿@model List<Attendance>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-dark">Attendance List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Attendance" asp-action="Create" class="btn btn-primary">Add Attendance</a>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered border table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Attendance Id</th>
+                <th>Employee Id</th>
+                <th>Date</th>
+                <th>Check-In-Time</th>
+                <th>Check-In-Out</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var attendanceObj in Model.OrderBy(a => a.AttendenceId))
+            {
+                <tr>
+                    <td>@attendanceObj.AttendenceId</td>
+                    <td>@attendanceObj.EmployeeId</td>
+                    <td>@attendanceObj.Date.ToString("yyyy-MM-dd")</td>
+                    <td>@attendanceObj.CheckInTime.ToString("hh:mm tt")</td>
+                    <td>@attendanceObj.CheckOutTime.ToString("hh:mm tt")</td>
+                    <td>
+                        <div class="row btn-group" role="group">
+                            <div class="col">
+                                <a asp-controller="Attendance" asp-action="Edit" asp-route-id="@attendanceObj.AttendenceId" class="btn btn-outline-warning">Edit</a>
+                            </div>
+                            <div class="col">
+                                <a asp-controller="Attendance" asp-action="Delete" asp-route-id="@attendanceObj.AttendenceId" class="btn btn-outline-danger">Delete</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
