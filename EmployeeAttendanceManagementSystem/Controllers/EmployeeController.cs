@@ -22,14 +22,14 @@ namespace EmployeeAttendanceManagementSystem.Controllers
         //To show the create page
         public IActionResult Create()
         {
-            List<string> departments =
-            [
+            List<string> departments = new List<string>
+            {
                 "HR",
                 "IT",
                 "Finance",
                 "Sales",
                 "Marketing"
-            ];
+            };
             ViewBag.DepartmentsList = departments;
 
             return View();
@@ -70,6 +70,16 @@ namespace EmployeeAttendanceManagementSystem.Controllers
             {
                 return NotFound();
             }
+
+            List<string> departments = new List<string>
+            {
+                "HR",
+                "IT",
+                "Finance",
+                "Sales",
+                "Marketing"
+            };
+            ViewBag.DepartmentsList = departments;
 
             return View(employeeObj);
         }
